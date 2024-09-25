@@ -30,10 +30,25 @@ function renderPokemonCard() {
         oneStat.className = 'card--text';
         oneStat.textContent = currentStat.stat.name.toUpperCase() + ': ' + currentStat.base_stat;
         dataStats.appendChild(oneStat);
-      });
+      })
      
-      
-      
+      let games = [];
+
+    item.game_indices.forEach((game) => {
+      if (!games.includes(game.game_index)){
+        games.push(game.game_index);
+      }
+    })
+
+    const gameIndexes = document.createElement('li');
+    gameIndexes.className = 'card--text';
+    gameIndexes.textContent = 'Games: '
+    games.forEach((uniqueGame) => {
+      gameIndexes.textContent = gameIndexes.textContent + '(' + uniqueGame + ')' + ' '
+    })
+
+    dataStats.appendChild(gameIndexes);
+
       li.appendChild(h2);
       li.appendChild(img);
       li.appendChild(dataStats);
